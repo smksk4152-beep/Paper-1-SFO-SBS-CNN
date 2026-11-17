@@ -1,0 +1,46 @@
+project: Paper-1-SFO-SBS-CNN
+reference_notebook: Notebook146_reference.ipynb
+seed: 42
+labels:
+  non_nodule: 0
+  nodule: 1
+dataset:
+  env_var: PAPER1_DATASET_DIR
+  train_dir: train
+  validation_dir: valid
+  test_dir: test
+  expected_counts:
+    train_non_nodule: 4805
+    train_nodule: 5016
+    valid_non_nodule: 948
+    valid_nodule: 919
+    test_non_nodule: 720
+    test_nodule: 766
+features:
+  image_size: [128, 128]
+  hog_orientations: 9
+  hog_pixels_per_cell: [16, 16]
+  hog_cells_per_block: [2, 2]
+  initial_feature_count: 300
+  selected_feature_count: 50
+  scaling: StandardScaler
+  scaling_fit_split: train
+sfo_sbs:
+  population_size: 8
+  max_iterations: 10
+  objective: maximize_validation_auc
+  fitness_classifier: LogisticRegression
+  logistic_regression_max_iter: 300
+  logistic_regression_solver: liblinear
+cnn:
+  input_shape: [10, 5, 1]
+  conv_filters: [32, 64, 128]
+  kernel_size: [3, 3]
+  dropout: 0.5
+  dense_units: [128, 64]
+  optimizer: Adam
+  learning_rate: 0.001
+  loss: binary_crossentropy
+  batch_size: 32
+  max_epochs: 30
+  checkpoint_monitor: val_auc
