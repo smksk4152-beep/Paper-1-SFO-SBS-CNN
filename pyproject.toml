@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paper1-sfo-sbs-cnn"
+version = "0.1.0"
+description = "Notebook 146 implementation of SFO-SBS feature selection and CNN classification"
+requires-python = ">=3.10,<3.13"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
